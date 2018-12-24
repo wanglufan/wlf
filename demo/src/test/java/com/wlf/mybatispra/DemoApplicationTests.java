@@ -1,6 +1,8 @@
 package com.wlf.mybatispra;
 
 import com.wlf.mybatispra.dao.CityDao;
+import com.wlf.mybatispra.dao.UserDao;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +10,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.wlf.mybatispra.bean.City;
+import com.wlf.mybatispra.bean.User;
 
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -20,6 +25,8 @@ public class DemoApplicationTests {
 
 	@Resource
 	CityDao citydao;
+	@Autowired
+	UserDao userDao;
 
 	@Test
 	public void contextLoads() {
@@ -33,18 +40,23 @@ public class DemoApplicationTests {
 	}
 
 	public void test() {
-		City city = new City();
-		city.setName("xian");
-		citydao.updateCity(city);
-
-		city = new City();
-		city.setName("cc");
-		citydao.insert(city);
-
-		log.info("new city id=" + city.getId());
-		log.info("" + citydao.delete(city));
-		log.info("delete end");
-		log.info("" + citydao.query());
+		/*List<User> list = userDao.showUser("");
+		list.forEach(System.out::println);*/
+	/*	//增加
+		User user = new User();
+		user.setUsername("username");
+		user.setUserpass("username");
+		int i = userDao.insertUser(user);*/
+		//修改
+		/*User user = new  User();
+		user.setUsername("username");
+		user.setUserpass("userpass");
+		int i = userDao.updateUser(user);*/
+		
+		//删除
+		User user = new  User();
+		user.setId(3);
+		int i = userDao.deleteUser(3);
 	}
 
 }
